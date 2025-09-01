@@ -1,18 +1,17 @@
-import axios from 'axios';
+ import axios from 'axios';
 
 const baseURL = 'https://projeto-coletores.onrender.com';
 
 const api = axios.create({
-  baseURL: `${baseURL}/api`,
+  baseURL: ${baseURL}/api,
 });
 
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
     if (token) {
-  config.headers['Authorization'] = `Bearer ${token}`;
-}
-
+      config.headers['x-auth-token'] = token;
+    }
     return config;
   },
   (error) => {
@@ -20,4 +19,4 @@ api.interceptors.request.use(
   }
 );
 
-export default api;
+export default api;
