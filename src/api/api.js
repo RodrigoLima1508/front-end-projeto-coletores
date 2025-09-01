@@ -1,9 +1,7 @@
- import axios from 'axios';
-
-const baseURL = 'https://projeto-coletores.onrender.com';
+import axios from 'axios';
 
 const api = axios.create({
-  baseURL: "${baseURL}/api",
+  baseURL: process.env.REACT_APP_BACKEND_URL ? `${process.env.REACT_APP_BACKEND_URL}/api` : 'http://localhost:5000/api',
 });
 
 api.interceptors.request.use(
@@ -19,4 +17,4 @@ api.interceptors.request.use(
   }
 );
 
-export default api;
+export default api;
