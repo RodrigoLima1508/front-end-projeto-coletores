@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-src/api/api.js
+const baseURL = 'https://projeto-coletores.onrender.com';
+
 const api = axios.create({
   baseURL: `${baseURL}/api`,
 });
