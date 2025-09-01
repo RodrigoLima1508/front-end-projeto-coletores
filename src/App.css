@@ -1,27 +1,85 @@
+/*
+  ======================================================
+  Variáveis de Cor para o Tema
+  ======================================================
+*/
+:root {
+  /* Tema Claro */
+  --background-color: #f4f4f4;
+  --text-color: #333;
+  --card-background: #fff;
+  --border-color: #ccc;
+}
+
+.App.dark {
+  /* Tema Escuro */
+  --background-color: #1a1a1a;
+  --text-color: #f4f4f4;
+  --card-background: #2b2b2b;
+  --border-color: #444;
+}
+
+/*
+  ======================================================
+  Estilos Globais
+  ======================================================
+*/
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: var(--background-color);
+  color: var(--text-color);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  transition: background-color 0.5s, color 0.5s; /* Transição suave */
+}
+
+/*
+  ======================================================
+  Estilos dos Componentes
+  ======================================================
+*/
+h1, h2, h3 {
+  color: var(--text-color);
+}
+
+.App .input {
+  background-color: var(--card-background);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.App .section {
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.App.dark .section {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.App .table {
+  color: var(--text-color);
+}
+
+.App .table thead th {
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.App .table tbody tr {
+  background-color: var(--card-background);
+}
+
+.App.dark .table tbody tr {
+  background-color: #3b3b3b;
 }
 
 .App-link {

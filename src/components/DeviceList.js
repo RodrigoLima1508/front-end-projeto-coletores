@@ -2,16 +2,21 @@ import React, { useState } from 'react';
 import api from '../api/api';
 
 const DeviceList = ({ devices, onDeviceUpdated }) => {
-  const [assignedTo, setAssignedTo] = useState('');
+  const [assignedTo, setAssignedTo] = useState({});
   const [editingId, setEditingId] = useState(null);
   const [editedDevice, setEditedDevice] = useState({});
 
   const handleAssign = async (id) => {
     try {
-      await api.put(`/devices/${id}/assign`, { assignedTo });
-      alert('Coletor atribuído com sucesso!');
+      const userToAssign = assignedTo[id];
+      if (!userToAssign) {
+        alert('Por favor, digite um usuário para atribuir.');
+        return;
+      }
+      await api.put(`/devices/${id}/assign`, { assignedTo: userToAssign });
+      alert(`Coletor atribuído para ${userToAssign} com sucesso!`);
       setEditingId(null);
-      setAssignedTo('');
+      setAssignedTo({});
       onDeviceUpdated();
     } catch (err) {
       alert('Erro ao atribuir coletor.');
@@ -85,6 +90,10 @@ const DeviceList = ({ devices, onDeviceUpdated }) => {
     }
   };
 
+  const handleAssignedToChange = (e, id) => {
+    setAssignedTo(prev => ({ ...prev, [id]: e.target.value }));
+  };
+
   return (
     <div style={styles.container}>
       <table style={styles.table}>
@@ -152,8 +161,8 @@ const DeviceList = ({ devices, onDeviceUpdated }) => {
                       <>
                         <input
                           type="text"
-                          value={assignedTo}
-                          onChange={(e) => setAssignedTo(e.target.value)}
+                          value={assignedTo[device._id] || ''}
+                          onChange={(e) => handleAssignedToChange(e, device._id)}
                           placeholder="Login"
                           style={styles.input}
                         />
@@ -180,21 +189,21 @@ const styles = {
   table: {
     width: '100%',
     borderCollapse: 'collapse',
+    color: 'var(--text-color)',
   },
   th: {
-    backgroundColor: '#f2f2f2',
+    backgroundColor: 'var(--background-color)',
     padding: '12px',
     textAlign: 'left',
-    borderBottom: '1px solid #ddd',
+    borderBottom: '1px solid var(--border-color)',
   },
   td: {
     padding: '12px',
-    borderBottom: '1px solid #ddd',
+    borderBottom: '1px solid var(--border-color)',
   },
   tr: {
-    ':hover': {
-      backgroundColor: '#f5f5f5',
-    },
+    backgroundColor: 'var(--card-background)',
+    transition: 'background-color 0.5s',
   },
   statusAtivo: {
     color: 'white',
@@ -281,8 +290,11 @@ const styles = {
   input: {
     padding: '4px',
     borderRadius: '4px',
-    border: '1px solid #ccc',
+    border: '1px solid var(--border-color)',
+    backgroundColor: 'var(--card-background)',
+    color: 'var(--text-color)',
     width: '100px',
+    transition: 'background-color 0.5s, color 0.5s, border-color 0.5s',
   },
 };
 

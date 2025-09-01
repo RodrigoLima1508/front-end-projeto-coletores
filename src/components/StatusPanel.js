@@ -32,7 +32,7 @@ const StatusPanel = ({ stats }) => {
 
 const styles = {
   container: {
-    backgroundColor: '#f8f9fa',
+    backgroundColor: 'var(--card-background)',
     padding: '1.5rem',
     borderRadius: '8px',
     boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
@@ -41,7 +41,7 @@ const styles = {
   title: {
     textAlign: 'center',
     marginBottom: '1rem',
-    color: '#333',
+    color: 'var(--text-color)',
   },
   statsGrid: {
     display: 'grid',

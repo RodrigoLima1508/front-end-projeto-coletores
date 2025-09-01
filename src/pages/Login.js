@@ -22,14 +22,14 @@ const Login = () => {
   return (
     <div style={styles.container}>
       <form onSubmit={handleLogin} style={styles.form}>
-        <h2>Login Administrativo</h2>
+        <h2 style={{ color: 'var(--text-color)' }}>Login Administrativo</h2>
         <input
           type="text"
           placeholder="Login"
           value={login}
           onChange={(e) => setLogin(e.target.value)}
           required
-          style={styles.input}
+          style={{ ...styles.input, backgroundColor: 'var(--card-background)', color: 'var(--text-color)', borderColor: 'var(--border-color)' }}
         />
         <input
           type="password"
@@ -37,7 +37,7 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          style={styles.input}
+          style={{ ...styles.input, backgroundColor: 'var(--card-background)', color: 'var(--text-color)', borderColor: 'var(--border-color)' }}
         />
         <button type="submit" style={styles.button}>Entrar</button>
       </form>
@@ -51,17 +51,19 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
-    backgroundColor: '#f0f2f5',
+    backgroundColor: 'var(--background-color)',
+    transition: 'background-color 0.5s',
   },
   form: {
     padding: '2rem',
     borderRadius: '8px',
     boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-    backgroundColor: 'white',
+    backgroundColor: 'var(--card-background)',
     display: 'flex',
     flexDirection: 'column',
     gap: '1rem',
     width: '300px',
+    transition: 'background-color 0.5s',
   },
   input: {
     padding: '0.75rem',

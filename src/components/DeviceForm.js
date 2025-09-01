@@ -43,7 +43,7 @@ const DeviceForm = ({ onDeviceAdded }) => {
       />
       <input
         type="text"
-        placeholder="Categoria (ex: Separação)"
+        placeholder="Categoria"
         value={category}
         onChange={(e) => setCategory(e.target.value)}
         style={styles.input}
@@ -69,7 +69,10 @@ const styles = {
   input: {
     padding: '0.75rem',
     borderRadius: '4px',
-    border: '1px solid #ccc',
+    border: '1px solid var(--border-color)',
+    backgroundColor: 'var(--card-background)',
+    color: 'var(--text-color)',
+    transition: 'background-color 0.5s, color 0.5s, border-color 0.5s',
   },
   button: {
     padding: '0.75rem',
