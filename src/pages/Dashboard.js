@@ -39,7 +39,7 @@ const Dashboard = () => {
     fetchDevices();
     fetchStats();
 
-    const ws = new WebSocket('ws://localhost:5000');
+    const ws = new WebSocket('wss://projeto-coletores.onrender.com');
     ws.onopen = () => console.log('Conectado ao servidor WebSocket');
     ws.onmessage = (event) => {
       const update = JSON.parse(event.data);
